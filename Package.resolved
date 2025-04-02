@@ -1,0 +1,33 @@
+{
+  "originHash" : "132d339be972b7b883f4a14fb9946742cc9a0dd295c7972442ba9a23e29547ad",
+  "pins" : [
+    {
+      "identity" : "cestrumcore",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Wadye17/CestrumCore",
+      "state" : {
+        "branch" : "main",
+        "revision" : "0a4d94ba011eee385c281a40fe9af80f94feaad4"
+      }
+    },
+    {
+      "identity" : "prism",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jordanbaird/Prism.git",
+      "state" : {
+        "revision" : "3712037843b9bba341130e4e36be7662ef07e704",
+        "version" : "0.1.2"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "41982a3656a71c768319979febd796c6fd111d5c",
+        "version" : "1.5.0"
+      }
+    }
+  ],
+  "version" : 3
+}
