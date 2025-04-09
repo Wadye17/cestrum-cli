@@ -110,13 +110,15 @@ struct Message: CustomStringConvertible {
         return Message(content: content)
     }
     
-    static func plan(header: String, body: String) -> Message {
+    static func plan(header: String, body: String, isEmpty: Bool = false) -> Message {
         let content = Prism(spacing: .newlines) {
             let header = "[\(header)]:"
             ForegroundColor(.cyan) {
-                Underline { Bold(header) }
+                Bold(header)
             }
-            body
+            ForegroundColor(isEmpty ? .gray : .default) {
+                body
+            }
             ForegroundColor(.cyan) { "\r\(header.map({ _ in return "—" }).joined(separator: ""))" }
         }
         return Message(content: content)

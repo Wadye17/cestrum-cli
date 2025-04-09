@@ -33,10 +33,14 @@ struct Apply: ParsableCommand {
         let concretePlan = graph.generatePlan(from: plan)
         
         if askConfirmation {
-            print(Message.notice("Here is what will be executed. Please read carefully."))
-            print(Message.plan(header: "Concrete Plan", body: concretePlan.description))
+            print(Message.notice("Here is what will be executed. Please read carefully..."))
+            if !plan.isTransparent {
+                print(Message.plan(header: "Concrete Plan", body: concretePlan.description))
+            } else {
+                print(Message.warning("The abstract reconfiguration formula appears to only have dependency management operations (i.e., 'bind' and/or 'release'), which are considered transparent, as they do not have concrete equivalents; therefore, the concrete plan will be empty."))
+                print(Message.plan(header: "Concrete Plan", body: "No concrete actions to perform", isEmpty: plan.isTransparent))
+            }
             print("Would you like to proceed? (Y/*)")
-
             let line = readLine()
             guard line == "Y" else {
                 print(Message.notice("Reconfiguration cancelled by the user."))

@@ -35,10 +35,21 @@ struct Plan: ParsableCommand {
             print(Message.plan(header: "Abstract Reconfiguration Formula", body: plan.description))
         }
         
-        print(Message.plan(header: "Atomic Plan", body: concretePlan.description))
+        if !plan.isTransparent {
+            print(Message.plan(header: "Concrete Plan", body: concretePlan.description))
+        } else {
+            print(Message.warning("The abstract reconfiguration formula appears to only have dependency management operations (i.e., 'bind' and/or 'release'), which are considered transparent, as they do not have concrete equivalents; therefore, the concrete plan will be empty."))
+            print(Message.plan(header: "Concrete Plan", body: "No concrete actions to perform", isEmpty: plan.isTransparent))
+        }
+        
+        let kubernetesEquivalent = concretePlan.kubernetesEquivalent
         
         if kubernetes {
-            print(Message.plan(header: "Kubernetes Equivalent", body: concretePlan.kubernetesEquivalent.joined(separator: "\n")))
+            if !kubernetesEquivalent.isEmpty {
+                print(Message.plan(header: "Kubernetes Equivalent", body: kubernetesEquivalent.joined(separator: "\n")))
+            } else {
+                print(Message.plan(header: "Kubernetes Equivalent", body: "No kubectl commands to run", isEmpty: true))
+            }
         }
     }
 }
