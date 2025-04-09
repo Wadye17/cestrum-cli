@@ -93,7 +93,7 @@ struct Message: CustomStringConvertible {
         }
         let content = Prism(spacing: .spaces) {
             ForegroundColor(.red) {
-                Bold(" -")
+                Bold(" |")
             }
             body.description
         }
