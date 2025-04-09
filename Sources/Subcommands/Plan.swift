@@ -28,12 +28,9 @@ struct Plan: ParsableCommand {
     func run() throws {
         let fileURL = try formURLfromString(filePath, havingExtension: "cesr")
         let code = try String(contentsOf: fileURL, encoding: .utf8)
-        let (graphName, plan) = CESPInterpreter.interpret(code: code)
-        
+        let (graphName, plan) = try interpret(code)
         let graph = try DependencyGraph.hook(name: graphName)
-        
         let concretePlan = graph.generatePlan(from: plan)
-        
         if abstract {
             print(Message.plan(header: "Abstract Reconfiguration Formula", body: plan.description))
         }

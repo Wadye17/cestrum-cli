@@ -66,6 +66,40 @@ struct Message: CustomStringConvertible {
         return Message(content: content)
     }
     
+    static func fullError(_ body: String) -> Message {
+        let content = Prism(spacing: .spaces) {
+            ForegroundColor(.red) {
+                Bold("[×] \(body)")
+            }
+        }
+        return Message(content: content)
+    }
+    
+    static func interpretationError(_ cesrError: CESRError) -> Message {
+        var body: Prism
+        if let line = cesrError.line {
+            body = Prism {
+                ForegroundColor(.red) {
+                    Bold("Line \(line):")
+                }
+                "\(cesrError.message)"
+            }
+        } else {
+            body = Prism {
+                ForegroundColor(.red) {
+                    cesrError.message
+                }
+            }
+        }
+        let content = Prism(spacing: .spaces) {
+            ForegroundColor(.red) {
+                Bold(" -")
+            }
+            body.description
+        }
+        return Message(content: content)
+    }
+    
     static func fatalError(_ body: String) -> Message {
         let content = Prism(spacing: .spaces) {
             ForegroundColor(.red) {
