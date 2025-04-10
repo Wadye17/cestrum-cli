@@ -11,7 +11,7 @@ import ArgumentParser
 extension Data {
     init(configurationPath: URL) throws {
         guard let data = try? Data(contentsOf: configurationPath) else {
-            print(Message.error("Failed to read the file because it is malformed or corrupted."))
+            print(Message.error("Failed to read the file because it is malformed or corrupted"))
             throw ExitCode.failure
         }
         self = data

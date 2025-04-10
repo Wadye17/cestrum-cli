@@ -19,11 +19,15 @@ func formURLfromString(_ pathString: String, havingExtension ext: String) throws
     try verifyURL(pathString)
     let fileURL = URL(fileURLWithPath: pathString)
     guard FileManager.default.fileExists(atPath: fileURL.path) else {
-        print(Message.error("File '\(fileURL.lastPathComponent)' does not exist."))
+        print(Message.error("File '\(fileURL.lastPathComponent)' does not exist"))
+        throw ExitCode.failure
+    }
+    guard !fileURL.pathExtension.isEmpty else {
+        print(Message.error("Cannot read the given file because it has no extension"))
         throw ExitCode.failure
     }
     guard fileURL.pathExtension == ext else {
-        print(Message.error("Cannot read the given file because it has an unsupported extension '.\(fileURL.pathExtension)'. File must end with '.\(ext)'"))
+        print(Message.error("Cannot read the given file because it has an unsupported extension '.\(fileURL.pathExtension)'; file must end with '.\(ext)'"))
         throw ExitCode.failure
     }
     return fileURL

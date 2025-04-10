@@ -21,21 +21,22 @@ struct New: ParsableCommand {
     func run() throws {
         let fileURL = try formURLfromString(filePath, havingExtension: "cesc")
         let data = try Data(configurationPath: fileURL)
-        let graph = try decode(from: data)
+        let graph = try decode(from: data, fileKind: .description)
         let encodedGraph = try encode(configuration: graph)
         let configurationName = graph.namespace
         let configurationFileName = "\(configurationName).cesc"
         
         guard !FileManager.default.fileExists(atPath: URL.cestrumDirectory.appendingPathComponent(configurationFileName).path) else {
-            print(Message.warning("Configuration '\(configurationName)' already exists.\nIf you wish to override it, please run 'cestrum override \(filePath)' instead"))
-            return
+            print(Message.warning("Configuration '\(configurationName)' already exists"))
+            print(Message.info("If you wish to override it, please run 'cestrum override \(filePath)' instead", kind: .tip))
+            throw ExitCode(2)
         }
         
         do {
             try encodedGraph.write(to: .cestrumDirectory.appendingPathComponent(configurationFileName))
-            print(Message.success("Registered a new configuration '\(configurationName)'."))
+            print(Message.success("Registered configuration '\(configurationName)'"))
         } catch {
-            print(Message.error("Could not register the configuration. Reason: \(error)"))
+            print(Message.error("Could not register the configuration\nReason: \(error)"))
             throw ExitCode.failure
         }
     }

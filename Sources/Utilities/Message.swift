@@ -36,10 +36,10 @@ struct Message: CustomStringConvertible {
         return Message(content: content)
     }
     
-    static func notice(_ body: String) -> Message {
+    static func info(_ body: String, kind: InfoKind = .plain) -> Message {
         let content = Prism(spacing: .spaces) {
             ForegroundColor(.blue) {
-                Bold("[i] Notice:")
+                Bold("\(kind.rawValue):")
             }
             body
         }
@@ -139,4 +139,11 @@ struct Message: CustomStringConvertible {
     var description: String {
         self.content.description
     }
+}
+
+enum InfoKind: String {
+    case plain = "[i]"
+    case notice = "[i] Notice"
+    case tip = "[i] Tip"
+    case important = "[i] IMPORTANT"
 }

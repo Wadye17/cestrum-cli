@@ -13,11 +13,11 @@ extension DependencyGraph {
     static func hook(name: String) throws -> DependencyGraph {
         let configurationFileDirectory = URL.cestrumDirectory.appendingPathComponent("\(name).cesc")
         guard FileManager.default.fileExists(atPath: configurationFileDirectory.path) else {
-            print(Message.error("Configuration '\(name)' not found."))
-            throw ExitCode.success
+            print(Message.error("No such configuration named \(name) is registered"))
+            throw ExitCode.failure
         }
         let data = try Data(configurationPath: configurationFileDirectory)
-        let configuration = try decode(from: data)
+        let configuration = try decode(from: data, fileKind: .instance)
         return configuration
     }
 }

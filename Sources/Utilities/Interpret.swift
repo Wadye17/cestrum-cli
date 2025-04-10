@@ -16,7 +16,7 @@ func interpret(_ code: String) throws -> (graphName: String, plan: AbstractPlan)
             print(Message.unexpected("The interpretation did not succeed, but the error(s) could not be retrieved; please contact the developer"))
             throw ExitCode.failure
         }
-        print(Message.fullError("Interpretation unsuccessful. \(errors.count) error(s) found:"))
+        print(Message.fullError("Interpretation failed; \(errors.count) error(s) found:"))
         for error in errors {
             print(Message.interpretationError(error))
         }

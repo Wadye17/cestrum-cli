@@ -21,20 +21,20 @@ struct Override: ParsableCommand {
     func run() throws {
         let fileURL = try formURLfromString(filePath, havingExtension: "cesc")
         let data = try Data(configurationPath: fileURL)
-        let newGraph = try decode(from: data)
+        let newGraph = try decode(from: data, fileKind: .description)
         let configurationName = newGraph.namespace
         let configurationFileName = "\(configurationName).cesc"
         
         guard FileManager.default.fileExists(atPath: URL.cestrumDirectory.appendingPathComponent(configurationFileName).path) else {
-            print(Message.error("Configuration '\(configurationName)' does not exist."))
+            print(Message.error("Configuration '\(configurationName)' does not exist"))
             return
         }
         
         do {
             try save(newGraph)
-            print(Message.success("Overridden configuration '\(configurationName)' !"))
+            print(Message.success("Overridden configuration '\(configurationName)'"))
         } catch {
-            print(Message.unexpected("Could not complete the overriding of the configuration. Reason: \(error)"))
+            print(Message.unexpected("Failed to override the configuration '\(configurationName)'\nReason: \(error)"))
             throw ExitCode.failure
         }
     }
