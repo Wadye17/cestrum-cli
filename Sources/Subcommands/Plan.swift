@@ -32,10 +32,14 @@ struct Plan: ParsableCommand {
         let graph = try DependencyGraph.hook(name: graphName)
         let concretePlan = graph.generatePlan(from: plan)
         if abstract {
-            print(Message.plan(header: "Abstract Reconfiguration Formula", body: plan.description))
+            if !plan.isEmpty {
+                print(Message.plan(header: "Abstract Reconfiguration Formula", body: plan.description))
+            } else {
+                print(Message.plan(header: "Abstract Reconfiguration Formula", body: " - Nothing", isEmpty: true))
+            }
         }
         
-        if !plan.isTransparent {
+        if !plan.isTransparent && !plan.isEmpty {
             print(Message.plan(header: "Concrete Plan", body: concretePlan.description))
         } else {
             print(Message.warning("The abstract reconfiguration formula appears to either be empty, or only have dependency management operations (i.e., 'bind' and/or 'release'), which are considered transparent, as they do not have concrete equivalents; the concrete plan will therefore be empty"))
