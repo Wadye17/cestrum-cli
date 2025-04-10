@@ -37,7 +37,7 @@ struct Apply: ParsableCommand {
             if !plan.isTransparent {
                 print(Message.plan(header: "Concrete Plan", body: concretePlan.description))
             } else {
-                print(Message.warning("The abstract reconfiguration formula appears to be either empty, or only have dependency management operations (i.e., 'bind' and/or 'release'), which are considered transparent, as they do not have concrete equivalents; the concrete plan will therefore be empty"))
+                print(Message.warning("The abstract reconfiguration formula appears to either be empty, or only have dependency management operations (i.e., 'bind' and/or 'release'), which are considered transparent, as they do not have concrete equivalents; the concrete plan will therefore be empty"))
                 print(Message.plan(header: "Concrete Plan", body: " - No concrete actions to perform", isEmpty: plan.isTransparent))
             }
             print("Would you like to proceed? (Y/*)")
