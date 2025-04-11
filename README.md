@@ -139,6 +139,13 @@ Additionally, by default, unlike `plan`, `apply` does not print out the generate
 however, you can still make Cestrum print it out and wait for your confirmation before proceeding 
 to the application of the reconfiguration by adding `-a` (or `--ask-confirmation`).
 
+---
+**NOTE**
+
+For visualisation purposes, after each `kubectl` command execution, the process sleeps for 3 seconds.
+
+---
+
 ## Overriding a Configuration
 For safety purposes, Cestrum does not allow registering a configuration with the name of one that 
 already exists; it will raise a warning telling you that a configuration with such a name is already registered, then exits with `exit code 2`.
@@ -154,10 +161,3 @@ Finally, you can also remove a configuration from Cestrum (independently of Kube
 ```bash
 cestrum remove <configuration-name>
 ```
-
----
-**NOTE**
-
-For visualisation purposes, after each `kubectl` command execution, the process sleeps for 3 seconds.
-
----
