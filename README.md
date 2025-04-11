@@ -154,3 +154,10 @@ Finally, you can also remove a configuration from Cestrum (independently of Kube
 ```bash
 cestrum remove <configuration-name>
 ```
+
+---
+**NOTE**
+
+For visualisation purposes, after each `kubectl` command execution, the process sleeps for 3 seconds.
+
+---
