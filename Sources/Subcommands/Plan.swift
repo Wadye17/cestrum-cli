@@ -25,25 +25,42 @@ struct Plan: ParsableCommand {
     @Flag(name: [.short, .customLong("k8s")], help: "Shows the sequence of kubernetes commands equivalent to the concrete reconfiguration plan generated from the given reconfiguration formula.")
     var kubernetes: Bool = false
     
-    func run() throws {
+    static func generateConcretePlan(filePath: String) throws -> (graph: DependencyGraph, abstractPlan: AbstractPlan, concretePlan: ConcretePlan)? {
         let fileURL = try formURLfromString(filePath, havingExtension: "cesr")
         let code = try String(contentsOf: fileURL, encoding: .utf8)
-        let (graphName, plan) = try interpret(code)
+        let (graphName, abstractPlan) = try interpret(code)
         let graph = try DependencyGraph.hook(name: graphName)
-        let concretePlan = graph.generatePlan(from: plan)
+        let concretePlan: ConcretePlan?
+        do {
+            concretePlan = try graph.generateConcretePlan(from: abstractPlan)
+        } catch {
+            print(Message.fullError(error.description))
+            return nil
+        }
+        guard let concretePlan else {
+            print(Message.unexpected("The concrete plan was not generated, yet the process is somehow still running, which is unexpected; please contact the developer"))
+            return nil
+        }
+        return (graph, abstractPlan, concretePlan)
+    }
+    
+    func run() throws {
+        guard let (_, abstractPlan, concretePlan) = try? Self.generateConcretePlan(filePath: filePath) else {
+            return
+        }
         if abstract {
-            if !plan.isEmpty {
-                print(Message.plan(header: "Abstract Reconfiguration Formula", body: plan.description))
+            if !abstractPlan.isEmpty {
+                print(Message.plan(header: "Abstract Reconfiguration Formula", body: abstractPlan.description))
             } else {
                 print(Message.plan(header: "Abstract Reconfiguration Formula", body: " - Nothing", isEmpty: true))
             }
         }
         
-        if !plan.isTransparent && !plan.isEmpty {
+        if !abstractPlan.isTransparent && !abstractPlan.isEmpty {
             print(Message.plan(header: "Concrete Plan", body: concretePlan.description))
         } else {
             print(Message.warning("The abstract reconfiguration formula appears to either be empty, or only have dependency management operations (i.e., 'bind' and/or 'release'), which are considered transparent, as they do not have concrete equivalents; the concrete plan will therefore be empty"))
-            print(Message.plan(header: "Concrete Plan", body: " - No concrete actions to perform", isEmpty: plan.isTransparent))
+            print(Message.plan(header: "Concrete Plan", body: " - No concrete actions to perform", isEmpty: abstractPlan.isTransparent))
         }
         
         let kubernetesEquivalent = concretePlan.kubernetesEquivalent

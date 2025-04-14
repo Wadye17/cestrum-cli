@@ -26,11 +26,9 @@ struct Apply: ParsableCommand {
     var withoutKubernetes: Bool = false
     
     func run() throws {
-        let fileURL = try formURLfromString(filePath, havingExtension: "cesr")
-        let code = try String(contentsOf: fileURL, encoding: .utf8)
-        let (graphName, plan) = try interpret(code)
-        let graph = try DependencyGraph.hook(name: graphName)
-        let concretePlan = graph.generatePlan(from: plan)
+        guard let (graph, plan, concretePlan) = try? Plan.generateConcretePlan(filePath: filePath) else {
+            return
+        }
         
         if askConfirmation {
             print(Message.info("Here is what will be executed. Please read carefully...", kind: .notice))
