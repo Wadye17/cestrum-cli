@@ -13,7 +13,7 @@ Swift is only required for building and installing Cestrum — no knowledge of t
   ```bash
   swift build --configuration release
   ```
-3) Move the binary the binary directory, by running:
+3) In the same Terminal window, move the binary the binary directory, by running:
   ```bash
   sudo cp -f .build/release/cestrum /usr/local/bin/cestrum
   ```
