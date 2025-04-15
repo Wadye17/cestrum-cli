@@ -20,7 +20,7 @@ Swift is only required for building and installing Cestrum — no knowledge of t
 4) Verify the installation by either running `cestrum --version` or `cestrum -h`
 
 # Getting Started
-On top of Kubernetes' concepts of [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), 
+On top of Kubernetes' concept of [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), 
 Cestrum defines three main concepts and relies heavily on them, and they are: 
 - *Configuration*, which is a high level description of a dependency graph of K8s deployments;
 - *Reconfiguration*, which represents a high-level plan describing intended structural changes to a Configuration;
