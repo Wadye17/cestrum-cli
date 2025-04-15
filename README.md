@@ -5,6 +5,8 @@
 - [Swift 6.0 or later](https://www.swift.org/install/macos/)
 - Kubernetes (with a working cluster, e.g., Minikube)
 
+Swift is only required for building and installing Cestrum — no knowledge of the Swift programming language is required.
+
 # Setup
 1) Open the `cestrum-cli` folder in Terminal (where there is the `Package.swift` file).
 2) Build the binary, by running:
@@ -15,7 +17,7 @@
   ```bash
   sudo cp -f .build/release/cestrum /usr/local/bin/cestrum
   ```
-Verify the installation by either running `cestrum --version` or `cestrum -h`
+4) Verify the installation by either running `cestrum --version` or `cestrum -h`
 
 # Getting Started
 On top of Kubernetes' concepts of [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), 
