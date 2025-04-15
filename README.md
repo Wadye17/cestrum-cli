@@ -69,16 +69,16 @@ cestrum view <configuration-name>
 ```
 In the running example, it would be `cestrum view doc`.
 
-Cestrum would print:
+Cestrum will print the following:
 ```
 [Configuration] 'doc':
 graph doc {
     deployments {client_1, client_2, server_1, server_2, some_middleware}
     dependencies {
-      (client_1 --> some_middleware)
-		  (client_2 --> some_middleware)
-		  (some_middleware --> server_1)
-		  (some_middleware --> server_2)
+      	(client_1 --> some_middleware)
+	(client_2 --> some_middleware)
+	(some_middleware --> server_1)
+	(some_middleware --> server_2)
     }
 }
 ```
@@ -139,12 +139,11 @@ Additionally, by default, unlike `plan`, `apply` does not print out the generate
 however, you can still make Cestrum print it out and wait for your confirmation before proceeding 
 to the application of the reconfiguration by adding `-a` (or `--ask-confirmation`).
 
----
-**NOTE**
+> [!NOTE]
+> For *experimental* purposes, after each `kubectl` command execution, the process sleeps for 3 seconds.
 
-For visualisation purposes, after each `kubectl` command execution, the process sleeps for 3 seconds.
-
----
+> [!IMPORTANT]
+> Cestrum currently assumes that Kubernetes is installed and up and running, errors that can be raised by Kubernetes are not handled by Cestrum.
 
 ## Overriding a Configuration
 For safety purposes, Cestrum does not allow registering a configuration with the name of one that 
@@ -161,3 +160,8 @@ Finally, you can also remove a configuration from Cestrum (independently of Kube
 ```bash
 cestrum remove <configuration-name>
 ```
+
+---
+
+> [!WARNING]
+> Cestrum is still in its alpha stage, and is only available for experimental use; it is not ready to be used for production.
