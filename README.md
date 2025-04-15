@@ -147,7 +147,7 @@ to the application of the reconfiguration by adding `-a` (or `--ask-confirmation
 > [!IMPORTANT]
 > Cestrum currently assumes that Kubernetes is installed and up and running, errors that can be raised by Kubernetes are not handled by Cestrum.
 
-## Overriding a Configuration
+## Override a Configuration
 For safety purposes, Cestrum does not allow registering a configuration with the name of one that 
 already exists; it will raise a warning telling you that a configuration with such a name is already registered, then exits with `exit code 2`.
 
@@ -157,7 +157,7 @@ However, you can *override* an existing configuration instead.
 cestrum override <path/to/config-description.cesc>
 ```
 
-## Removing a Configuration
+## Remove a Configuration
 Finally, you can also remove a configuration from Cestrum (independently of Kubernetes), by running:
 ```bash
 cestrum remove <configuration-name>
