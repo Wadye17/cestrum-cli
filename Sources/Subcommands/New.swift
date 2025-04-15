@@ -32,6 +32,11 @@ struct New: ParsableCommand {
             throw ExitCode(2)
         }
         
+        guard !graph.hasCycles else {
+            print(Message.error("The given configuration cannot be registered because its graph exhibits at least one cycle; configurations must be acyclic"))
+            throw ExitCode.failure
+        }
+        
         do {
             try encodedGraph.write(to: .cestrumDirectory.appendingPathComponent(configurationFileName))
             print(Message.success("Registered configuration '\(configurationName)'"))

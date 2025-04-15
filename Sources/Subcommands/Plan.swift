@@ -63,9 +63,8 @@ struct Plan: ParsableCommand {
             print(Message.plan(header: "Concrete Plan", body: " - No concrete actions to perform", isEmpty: abstractPlan.isTransparent))
         }
         
-        let kubernetesEquivalent = concretePlan.kubernetesEquivalent
-        
         if kubernetes {
+            let kubernetesEquivalent = concretePlan.kubernetesEquivalent
             if !kubernetesEquivalent.isEmpty {
                 print(Message.plan(header: "Kubernetes Equivalent", body: kubernetesEquivalent.joined(separator: "\n")))
             } else {
