@@ -10,7 +10,7 @@ import ArgumentParser
 struct CestrumCLI: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "cestrum",
-        abstract: "🍃 Manage and orchestrate Kubernetes deployment reconfigurations.",
+        abstract: "Manage and orchestrate Kubernetes deployment reconfigurations 🍃",
         version: "alpha-1.0",
         subcommands: [New.self, Plan.self, View.self, Apply.self, Override.self, Remove.self]
     )
