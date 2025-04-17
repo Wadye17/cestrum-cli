@@ -90,10 +90,10 @@ The purpose of planning a reconfiguration is to be able to see what the actual,
 low-level operations will be (stopping, removing, adding, and starting deployments),
 instead of directly applying them.
 
-Reconfigurations are written in the CESR language.
+Reconfigurations are written in the CESR language, in files ending with `.cesr` (with a **r**, for "reconfiguration").
 
-For instance, in the running example, we would like to replace the deployment `server_1` with another, say `new_server_1`.
-In CESR, such a reconfiguration can be expressed as:
+For instance, in the running example, we would like to replace the deployment `server_1` with another, say `new_server_1`;
+in CESR, such a reconfiguration can be expressed as:
 
 ```
 hook "doc";
