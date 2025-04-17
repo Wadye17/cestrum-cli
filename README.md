@@ -124,7 +124,7 @@ start client_1
 start client_2
 ```
 
-Additonally, may wish to print the abstract formula (again), or even the actual Kubernetes kubectl commands equivalent to the concrete plan, 
+Additonally, one may wish to print the abstract formula (again), or even the actual Kubernetes `kubectl` commands equivalent to the concrete plan, 
 by adding the `-a` (or `--abstract`) and `-k`(or `--k8s`) flags, respectively.
 
 ## Apply a Reconfiguration
