@@ -34,7 +34,7 @@ obtainable now via DocC on Xcode).
 Consider the following quick example of a Cestrum configuration.
 
 ```mermaid
-graph TD;
+ graph TD;
     frontend-->backend;
     notification-->backend;
     backend-->auth;
@@ -126,19 +126,19 @@ Running the example reconfiguration would print something like:
 ```
 [Concrete Plan]:
 stop frontend
-stop notification-service
+stop notification
 stop backend
-stop auth-service
+stop auth
 stop database
 remove database
 remove backend
 add new-database
 add new-backend
 start new-database
-start auth-service
+start auth
 start new-backend
 start frontend
-start notification-service
+start notification
 ```
 
 Additonally, one may wish to print the abstract formula (again), or even the actual Kubernetes `kubectl` commands equivalent to the concrete plan, 
