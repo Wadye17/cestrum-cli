@@ -36,10 +36,10 @@ Consider the following quick example of a Cestrum configuration.
 ```mermaid
 graph TD;
     frontend-->backend;
-    notification-service-->backend;
-    backend-->auth-service;
+    notification-->backend;
+    backend-->auth;
     backend-->database;
-    auth-service-->database;
+    auth-->database;
 ```
 
 ## Register a New Configuration
@@ -49,13 +49,13 @@ In the running example, the configuration can be described like the following:
 ```json
 {
 	"namespace": "example",
-	"deployments": ["database", "frontend", "auth-service", "backend", "notification-service"],
+	"deployments": ["database", "frontend", "auth", "backend", "notification"],
 	"dependencies": [
-		{ "source": "frontend",        		"target": "backend" },
-		{ "source": "notification-service", 	"target": "backend" },
-		{ "source": "backend", 			"auth-service" },
-		{ "source": "backend",        		"target": "database" },
-		{ "source": "auth-service",        	"target": "database" },
+		{ "source": "frontend",        	"target": "backend" },
+		{ "source": "notification", 	"target": "backend" },
+		{ "source": "backend", 		"auth" },
+		{ "source": "backend",        	"target": "database" },
+		{ "source": "auth",     	"target": "database" },
 	]
 }
 ```
@@ -86,10 +86,10 @@ graph doc {
     deployments {frontend, backend, auth-service, notification-service, database}
     dependencies {
       	frontend -> backend
-	notification-service -> backend
-	backend -> auth-service
+	notification -> backend
+	backend -> auth
 	backend -> database
-	auth-service -> database
+	auth -> database
     }
 }
 ```
