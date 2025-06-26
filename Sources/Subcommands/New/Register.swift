@@ -1,21 +1,21 @@
 //
-//  New.swift
+//  Register.swift
 //  cestrum-cli
 //
-//  Created by Wadÿe on 17/03/2025.
+//  Created by Wadÿe on 15/05/2025.
 //
 
 import Foundation
-import ArgumentParser
 import CestrumCore
+import ArgumentParser
 
-struct New: ParsableCommand {
+struct Register: ParsableCommand {
     static let configuration = CommandConfiguration(
-        commandName: "new",
-        abstract: "Registers a new configuration."
+        commandName: "register",
+        abstract: "Registers a new configuration from a given configuration description."
     )
     
-    @Argument(help: "The file name (or path) of the configuration to register.")
+    @Argument(help: "The file name of (or path to) the configuration to register.")
     var filePath: String
     
     func run() throws {

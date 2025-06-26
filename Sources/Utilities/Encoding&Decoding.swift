@@ -35,7 +35,7 @@ func decode(from data: Data, fileKind: CESCFileKind) throws -> DependencyGraph {
             print(Message.error("Failed to decode the configuration description data"))
             throw ExitCode.failure
         }
-        let configuration = DependencyGraph(description: description)
+        let configuration = try DependencyGraph(description: description)
         return configuration
     }
 }

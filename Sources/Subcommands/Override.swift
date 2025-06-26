@@ -15,7 +15,7 @@ struct Override: ParsableCommand {
         abstract: "Overrides an existing configuration with another."
     )
     
-    @Argument(help: "The file name (or path) of the newer version of the configuration.")
+    @Argument(help: "The file name of (or path to) the newer version of the configuration.")
     var filePath: String
     
     func run() throws {

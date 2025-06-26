@@ -9,9 +9,9 @@ import Foundation
 import CestrumCore
 import ArgumentParser
 
-func interpret(_ code: String) throws -> (graphName: String, plan: AbstractPlan) {
+func interpret(_ code: String) throws -> (graphName: String, formula: AbstractFormula) {
     let interpretationResult = CESRInterpreter.interpret(code: code)
-    guard let (graphName, plan) = try? interpretationResult.get() else {
+    guard let (graphName, formula) = try? interpretationResult.get() else {
         guard case .failure(let errors) = interpretationResult else {
             print(Message.unexpected("The interpretation did not succeed, but the error(s) could not be retrieved; please contact the developer"))
             throw ExitCode.failure
@@ -22,5 +22,5 @@ func interpret(_ code: String) throws -> (graphName: String, plan: AbstractPlan)
         }
         throw ExitCode.failure
     }
-    return (graphName, plan)
+    return (graphName, formula)
 }

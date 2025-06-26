@@ -1,5 +1,5 @@
 {
-  "originHash" : "132d339be972b7b883f4a14fb9946742cc9a0dd295c7972442ba9a23e29547ad",
+  "originHash" : "fb336f27c7f088e1b024f7c12f31b2a6ba7836083fb70a513aa20a185c3ae556",
   "pins" : [
     {
       "identity" : "cestrumcore",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/Wadye17/CestrumCore",
       "state" : {
         "branch" : "main",
-        "revision" : "3c0e9e101c6a98b4bd9ffe01e903d5e556a2850f"
+        "revision" : "d265fbe1ea7eea46738a2b97c83f3ebce036adcb"
       }
     },
     {

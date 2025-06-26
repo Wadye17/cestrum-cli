@@ -136,6 +136,16 @@ struct Message: CustomStringConvertible {
         return Message(content: content)
     }
     
+    static func unavailable(_ body: String) -> Message {
+        let content = Prism(spacing: .spaces) {
+            ForegroundColor(.magenta) {
+                Bold("[!] Unavailable:")
+            }
+            body
+        }
+        return Message(content: content)
+    }
+    
     var description: String {
         self.content.description
     }

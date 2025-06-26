@@ -1,28 +1,27 @@
 //
-//  Apply.swift
+//  File.swift
 //  cestrum-cli
 //
-//  Created by Wadÿe on 17/03/2025.
+//  Created by Wadÿe on 09/05/2025.
 //
 
 import Foundation
-import ArgumentParser
 import CestrumCore
-import Prism
+import ArgumentParser
 
-struct Apply: ParsableCommand {
+struct SyncApply: ParsableCommand {
     static let configuration = CommandConfiguration(
-        commandName: "apply",
-        abstract: "Applies the given CESR reconfiguration formula."
+        commandName: "sync",
+        abstract: "Generates a concrete plan from the given reconfiguration formula written in CESR, and runs it synchronously (sequentially)."
     )
     
-    @Argument(help: "The file name (or path) of the CESR formula to apply.")
+    @Argument(help: "The file name of (or path to) the CESR formula to apply.")
     var filePath: String
     
-    @Flag(name: .shortAndLong, help: "Ask for the user's confirmation before proceeding. If enabled, the abstract plan will be displayed beforehand.")
+    @Flag(name: .shortAndLong, help: "Ask for the user's confirmation before proceeding. If enabled, the abstract formula will be displayed beforehand.")
     var askConfirmation: Bool = false
     
-    @Flag(name: .customLong("no-k8s"), help: "Skips the application of this plan on Kubernetes. Enable only for testing purposes.")
+    @Flag(name: .customLong("no-k8s"), help: "Skips the application of the plan on Kubernetes. Enable only for testing purposes.")
     var withoutKubernetes: Bool = false
     
     func run() throws {
@@ -46,7 +45,7 @@ struct Apply: ParsableCommand {
             }
         }
         
-        concretePlan.apply(on: graph, onKubernetes: !withoutKubernetes, stdout: nil, stderr: nil, timeInterval: 2)
+        concretePlan.apply(on: graph, onKubernetes: !withoutKubernetes, stdout: nil, stderr: .standardError)
         
         print(Message.success("Applied the plan on configuration '\(graph.namespace)'"))
         
