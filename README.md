@@ -53,7 +53,7 @@ In the running example, the configuration can be described like the following:
 	"dependencies": [
 		{ "source": "frontend",        	"target": "backend" },
 		{ "source": "notification", 	"target": "backend" },
-		{ "source": "backend", 		"auth" },
+		{ "source": "backend", 		"target": "auth" },
 		{ "source": "backend",        	"target": "database" },
 		{ "source": "auth",     	"target": "database" },
 	]
