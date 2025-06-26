@@ -24,7 +24,7 @@ Swift is only required for building and installing Cestrum — no knowledge of t
 On top of Kubernetes' concept of [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), 
 Cestrum defines three main concepts and relies heavily on them, and they are: 
 - *Configuration*, which is a high level description of a dependency graph of K8s deployments;
-- *Reconfiguration*, which represents a high-level plan describing intended structural changes to a Configuration;
+- *Reconfiguration Specification*, which represents a specification describing the intended structural changes to a configuration;
 - and *CESR*, an interpreted language for expressing reconfigurations.
 
 Further details about these concepts can be found on `CestrumCore`'s [documentation](https://github.com/Wadye17/CestrumCore) (coming soon on GitHub,
