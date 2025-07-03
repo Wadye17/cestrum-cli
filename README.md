@@ -1,7 +1,7 @@
 ### A command line tool for the orchestration of Kubernetes reconfigurations, built on top of **CestrumCore**.
 
 # Requirements
-- A macOS operating system (full Unix support will be brought back soon)
+- A macOS operating system (13.0 or later, full Unix support will be brought back soon)
 - [Swift 6.0 or later](https://www.swift.org/install/macos/)
 - Kubernetes with a working cluster (e.g., Minikube)
 - DOT GraphViz
