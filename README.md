@@ -28,7 +28,7 @@ Cestrum defines three main concepts and relies heavily on them, and they are:
 - and *CESR*, an interpreted language for expressing reconfigurations.
 
 Further details about these concepts can be found on `CestrumCore`'s [documentation](https://github.com/Wadye17/CestrumCore) (coming soon on GitHub,
-obtainable now via DocC on Xcode).
+available on Xcode via DocC).
 
 
 Consider the following quick example of a Cestrum configuration.
