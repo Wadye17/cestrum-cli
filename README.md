@@ -82,9 +82,9 @@ In the running example, it would be `cestrum view example`.
 Cestrum will print the following:
 ```
 [Configuration] 'doc':
-graph doc {
-    deployments {frontend, backend, auth-service, notification-service, database}
-    dependencies {
+graph 'doc' {
+    deployments (5) {frontend, backend, auth, notification, database}
+    dependencies (5) {
       	frontend -> backend
 	notification -> backend
 	backend -> auth
@@ -129,13 +129,11 @@ stop frontend
 stop notification
 stop backend
 stop auth
-stop database
-remove database
 remove backend
-add new-database
+remove auth
 add new-backend
-start new-database
-start auth
+add new-auth
+start new-auth
 start new-backend
 start frontend
 start notification
@@ -153,9 +151,6 @@ cestrum plan async <path/to/reconfig-file.cesr>
 ```
 
 Cestrum will automatically build the BPMN workflow and render it.
-For the example, we get:
-
-IMAGE, PLEASE!
 
 ## Apply a Reconfiguration
 Applying a reconfiguration works almost the same way as planning it, except it will actually:
@@ -165,6 +160,8 @@ Applying a reconfiguration works almost the same way as planning it, except it w
 ```bash
 cestrum apply <sync* | async> <path/to/reconfig-file.cesr>
 ```
+
+* `sync` is the default subcommand.
 
 For testing purposes, you can skip the execution on Kubernetes, by enabling the `--no-k8s` flag.
 Additionally, by default, unlike `plan`, `apply` does not print out the generated low-level plan,
