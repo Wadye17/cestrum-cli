@@ -146,8 +146,10 @@ by adding the `-a` (or `--abstract`) and `-k`(or `--k8s`) flags, respectively.
 The parallelisable plan is an executable BPMN structure that groups the concrete operations in a workflow.
 Operations are run in parallel where safe (according to the dependencies).
 
+To generate the phased variant, use `phased` argument, and `confluent` for the confluent variant.
+
 ```bash
-cestrum plan async <path/to/reconfig-file.cesr>
+cestrum plan async <path/to/reconfig-file.cesr> <phased | confluent>
 ```
 
 Cestrum will automatically build the BPMN workflow and render it.
@@ -158,7 +160,7 @@ Applying a reconfiguration works almost the same way as planning it, except it w
 2) Mutates the existing configuration and saves it.
 
 ```bash
-cestrum apply <sync* | async> <path/to/reconfig-file.cesr>
+cestrum apply <sync* | async> <path/to/reconfig-file.cesr> <phased | confluent>
 ```
 
 * `sync` is the default subcommand.
